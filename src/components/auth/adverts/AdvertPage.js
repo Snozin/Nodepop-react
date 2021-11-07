@@ -8,7 +8,7 @@ import DeleteAdButton from "./DeleteAdButton"
 
 const AdvertPage = () => {
   const { id } = useParams()
-  const [advert, setAdvert] = useState(null)
+  const [advert, setAdvert] = useState([])
   const [canBeDeleted, setCanBeDeleted] = useState(false)
   const navigate = useNavigate()
   // Id prueba:
@@ -16,9 +16,7 @@ const AdvertPage = () => {
 
   useEffect(() => {
     getAdvert(id)
-      .then((rawAdvert) => {
-        setAdvert(rawAdvert)
-      })
+      .then(setAdvert)
       .catch((error) => {
         console.log(error.status)
         navigate("/notFound", { replace: true })
@@ -34,34 +32,30 @@ const AdvertPage = () => {
     return <Navigate to="/" />
   }
   return (
-    <>
-      {advert && (
-        <>
-          <h2>{advert.name}</h2>
-          {advert.photo ? (
-            <img
-              src={`${process.env.REACT_APP_API_BASE_URL}${advert.photo}`}
-              alt={`Imagen de ${advert.name}`}
-            />
-          ) : (
-            <img src={placeholder} alt="Anuncio sin foto" />
-          )}
+      <main>
+        <h2>{advert.name}</h2>
+        {advert.photo ? (
+          <img
+            src={`${process.env.REACT_APP_API_BASE_URL}${advert.photo}`}
+            alt={`Imagen de ${advert.name}`}
+          />
+        ) : (
+          <img src={placeholder} alt="Anuncio sin foto" />
+        )}
 
-          <br />
-          <small>{advert.sale ? "Venta" : "Compra"}</small>
-          <p>Precio: {advert.price}</p>
-          <div>
-            {advert.tags.map((tag, index) => (
-              <span key={index}>
-                <small>{tag}</small>
-                <br />
-              </span>
-            ))}
-          </div>
-          <DeleteAdButton onDelete={onDelete} />
-        </>
-      )}
-    </>
+        <br />
+        <small>{advert.sale ? "Venta" : "Compra"}</small>
+        <p>Precio: {advert.price}</p>
+        <div>
+          {advert.tags?.map((tag, index) => (
+            <span key={index}>
+              <small>{tag}</small>
+              <br />
+            </span>
+          ))}
+        </div>
+        <DeleteAdButton onDelete={onDelete} />
+      </main>
   )
 }
 

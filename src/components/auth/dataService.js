@@ -25,14 +25,21 @@ export const logout = () =>
     storage.remove("auth_token")
   })
 
-  export const getAdvert = async (id) => {
-    return await client.get(`/api/v1/adverts/${id}`)
-  }
+export const getAdvert = async (id) => {
+  return await client.get(`/api/v1/adverts/${id}`)
+}
 
-  export const getAdverts = async () => {
-    return await client.get('/api/v1/adverts')
-  }
+export const getAdverts = async (config) => {
+  // { name, sale, price, tags }
+  console.log(config)
+  const url = `/api/v1/adverts`
+  return await client.get(url)
+}
 
-  export const deleteAdverts = (id) => {
-    return client.delete(`/api/v1/adverts/${id}`)
-  }
+export const getTags = async () => {
+  return await client.get("/api/v1/adverts/tags")
+}
+
+export const deleteAdverts = (id) => {
+  return client.delete(`/api/v1/adverts/${id}`)
+}
