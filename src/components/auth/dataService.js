@@ -24,3 +24,15 @@ export const logout = () =>
     removeAuthorizationHeader()
     storage.remove("auth_token")
   })
+
+  export const getAdvert = async (id) => {
+    return await client.get(`/api/v1/adverts/${id}`)
+  }
+
+  export const getAdverts = async () => {
+    return await client.get('/api/v1/adverts')
+  }
+
+  export const deleteAdverts = (id) => {
+    return client.delete(`/api/v1/adverts/${id}`)
+  }
