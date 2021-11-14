@@ -7,28 +7,37 @@ import { FilterContextProvider } from "./filterContext"
 import { useEffect, useState } from "react"
 
 const Filter = () => {
-  const [url, setUrl] = useState([])
+  const INITIAL_STATE = {type:'All'}
+  const [filterQuery, setFilterQuery] = useState(INITIAL_STATE)
+
   const handleSubmit = (event) => {
     event.preventDeffault()
   }
 
   useEffect(() => {
-    console.log("filtrare: ", url)
-  }, [url])
+    console.log("filtrare: ", filterQuery)
+
+    return () => {
+      // Función de retorno para cancelar actualización de estado
+    }
+  }, [filterQuery])
+
+  const handleChange = () => {
+    // console.log('cambio')
+  }
   return (
-    <FilterContextProvider value={{ url, setUrl }}>
+    // TODO:
+    /* 
+     * El filtro contendrá los parámetros para filtrar. Realizar el filtrado
+    en el front con los datos ya existentes para evitar peticiones al back.
+     */
+    <FilterContextProvider value={{ filterQuery, setFilterQuery }}>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} onChange={handleChange}>
           <NameFilter />
-          <br />
-          <br />
           <TypeFilter />
-          <br />
           <PriceFilter />
-          <br />
-          <br />
           <TagFilter />
-          <br />
         </form>
       </div>
     </FilterContextProvider>

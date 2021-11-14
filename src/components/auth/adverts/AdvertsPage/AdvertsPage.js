@@ -22,27 +22,29 @@ const AdvertsPage = () => {
     <main>
       <h2>Listado de anuncios</h2>
       {adverts.length > 0 ? (
-        <ul>
-          <li><Filter/></li>
-          {adverts.map((advert) => {
-            return (
-              <li key={advert.id} className="advert-list">
-                <Link to={`/adverts/${advert.id}`}>
-                  <h3>{advert.name}</h3>
-                  <small>{advert.sale ? "Venta" : "Compra"}</small>
-                  <p>Precio: {advert.price}</p>
-                  <div>
-                    {advert.tags?.map((tag, index) => (
-                      <span key={index}>
-                        <small>{tag}</small>{" "}
-                      </span>
-                    ))}
-                  </div>
+        <>
+          <Filter />
+          <ul>
+            {adverts.map((advert) => {
+              return (
+                <Link key={advert.id} to={`/adverts/${advert.id}`}>
+                  <li  className="advert-list">
+                    <h3>{advert.name}</h3>
+                    <small>{advert.sale ? "Venta" : "Compra"}</small>
+                    <p>Precio: {advert.price}</p>
+                    <div>
+                      {advert.tags?.map((tag, index) => (
+                        <span key={index}>
+                          <small>{tag}</small>{" "}
+                        </span>
+                      ))}
+                    </div>
+                  </li>
                 </Link>
-              </li>
-            )
-          })}
-        </ul>
+              )
+            })}
+          </ul>
+        </>
       ) : (
         <div>
           <p>Aún no hay anuncios</p>

@@ -2,22 +2,17 @@ import { useContext, useEffect, useState } from "react"
 import FilterContext from "./filterContext"
 
 const TypeFilter = () => {
-  const [radioValue, setRadioValue] = useState(false)
-  const { setUrl } = useContext(FilterContext)
+  const { filterQuery, setFilterQuery } = useContext(FilterContext)
+  const [radioValue, setRadioValue] = useState(filterQuery.type)
 
   useEffect(() => {
-    setUrl((prevValues) => ({ ...prevValues, sale: radioValue }))
-  }, [radioValue, setUrl])
+    setFilterQuery((prevValues) => ({ ...prevValues, type: radioValue }))
+  }, [radioValue, setFilterQuery])
 
   const handleChange = (event) => {
-    // console.log(event.target.checked)
-    console.log(event.target.value)
-    if (event.target.value === "true") {
-      // console.log('entro')
-      setRadioValue({
-        sale: true,
-      })
-    }
+    const value = event.target.value
+
+    setRadioValue(value)
   }
 
   return (
@@ -30,7 +25,8 @@ const TypeFilter = () => {
           type="radio"
           name="type-filter"
           onChange={handleChange}
-          value={true}
+          value='Sell'
+          checked={radioValue === 'Sell'}
         />
       </label>{" "}
       <label>
@@ -39,7 +35,8 @@ const TypeFilter = () => {
           type="radio"
           name="type-filter"
           onChange={handleChange}
-          value={false}
+          value='Buy'
+          checked={radioValue === 'Buy'}
         />
       </label>{" "}
       <label>
@@ -48,7 +45,8 @@ const TypeFilter = () => {
           type="radio"
           name="type-filter"
           onChange={handleChange}
-          value={undefined}
+          value='All'
+          checked={radioValue === 'All'}
         />
       </label>
     </div>
