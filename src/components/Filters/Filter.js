@@ -1,35 +1,37 @@
-import NameFilter from "./nameFilter"
-import PriceFilter from "./priceFilter"
-import TagFilter from "./tagFilter"
-import TypeFilter from "./typeFilter"
+import NameFilter from "./inputTextField"
+import PriceFilter from "./inputNumberGroup"
+import TagFilter from "./checkboxGroup"
+import TypeFilter from "./radioGroup"
 
 import { FilterContextProvider } from "./filterContext"
 import { useEffect, useState } from "react"
+import { useFilter } from "./hooks"
 
-const Filter = () => {
+const Filter = ({ adverts }) => {
   const INITIAL_STATE = {
     name: "",
-    range: { minVal: 0, maxVal: 3000 },
+    range: { minVal: '', maxVal: '' },
     tags: { lifestyle: false, mobile: false, motor: false, work: false },
     type: "All",
   }
   const [filterParams, setFilterParams] = useState(INITIAL_STATE)
 
-  const handleSubmit = (event) => {
-    event.preventDeffault()
-  }
-
   useEffect(() => {
-    console.log("filtrare: ", filterParams)
+    // console.log("filterParams: ", filterParams)
 
     return () => {
       // Función de retorno para cancelar actualización de estado
     }
   }, [filterParams])
 
-  const handleChange = () => {
-    // console.log('cambio')
+  const handleSubmit = (event) => {
+    event.preventDeffault()
   }
+
+  const handleChange = () => {}
+
+  useFilter(adverts, filterParams)
+  // console.log(adverts)
   return (
     // TODO:
     /* 

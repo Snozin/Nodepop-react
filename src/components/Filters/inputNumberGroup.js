@@ -5,16 +5,18 @@ const PriceFilter = () => {
   const { filterParams, setFilterParams } = useFilterContext()
   const [values, setValues] = useState(filterParams.range)
 
-  const handleChange = (event) => {
-    const { value, name } = event.target
-    setValues((prev) => ({ ...prev, [name]: value }))
-  }
   useEffect(() => {
     setFilterParams((prev) => ({
       ...prev,
       range: values,
     }))
   }, [values, setFilterParams])
+
+  const handleChange = (event) => {
+    const { value, name } = event.target
+    setValues((prev) => ({ ...prev, [name]: value }))
+  }
+
   return (
     <label>
       Busca por rango:{" "}

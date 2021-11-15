@@ -5,12 +5,14 @@ const NameFilter = () => {
   const { filterParams, setFilterParams } = useFilterContext()
   const [value, setValue] = useState(filterParams.name)
 
-  const handleChange = (event) => {
-    setValue(event.target.value)
-  }
   useEffect(() => {
     setFilterParams((prev) => ({ ...prev, name: value }))
   }, [value, setFilterParams])
+
+  const handleChange = (event) => {
+    setValue(event.target.value)
+  }
+  
   return (
     <label>
       Busca por nombre:

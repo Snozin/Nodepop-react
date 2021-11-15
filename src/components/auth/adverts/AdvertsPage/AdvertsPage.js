@@ -23,7 +23,7 @@ const AdvertsPage = () => {
       <h2>Listado de anuncios</h2>
       {adverts.length > 0 ? (
         <>
-          <Filter />
+          <Filter adverts={adverts}/>
           <ul>
             {adverts.map((advert) => {
               return (
