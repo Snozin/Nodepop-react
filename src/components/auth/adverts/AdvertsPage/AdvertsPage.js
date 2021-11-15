@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { getAdverts } from "../../dataService"
 
 import "./AdvertsPage.css"
-import Filter from "./Filter/Filter"
+import Filter from "../../../Filters/Filter"
 
 const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([])

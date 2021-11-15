@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getTags } from "../../../dataService"
+import { getTags } from "../auth/dataService"
 import { useFilterContext } from "./filterContext"
 
 const TagFilter = () => {
