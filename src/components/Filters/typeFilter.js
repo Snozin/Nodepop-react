@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 import { useFilterContext } from "./filterContext"
 
 const TypeFilter = () => {
-  const { filterQuery, setFilterQuery } = useFilterContext()
-  const [radioValue, setRadioValue] = useState(filterQuery.type)
+  const { filterParams, setFilterParams } = useFilterContext()
+  const [radioValue, setRadioValue] = useState(filterParams.type)
 
   useEffect(() => {
-    setFilterQuery((prevValues) => ({ ...prevValues, type: radioValue }))
-  }, [radioValue, setFilterQuery])
+    setFilterParams((prevValues) => ({ ...prevValues, type: radioValue }))
+  }, [radioValue, setFilterParams])
 
   const handleChange = (event) => {
     const value = event.target.value

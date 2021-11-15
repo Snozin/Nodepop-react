@@ -4,8 +4,8 @@ import { useFilterContext } from "./filterContext"
 
 const TagFilter = () => {
   const [tags, setTags] = useState([])
-  const { filterQuery, setFilterQuery } = useFilterContext()
-  const [chosen, setChosen] = useState(filterQuery.tags)
+  const { filterParams, setFilterParams } = useFilterContext()
+  const [chosen, setChosen] = useState(filterParams.tags)
 
   useEffect(() => {
     getTags()
@@ -16,8 +16,8 @@ const TagFilter = () => {
   }, [])
 
   useEffect(() => {
-    setFilterQuery((prevValues) => ({ ...prevValues, tags: chosen }))
-  }, [setFilterQuery, chosen])
+    setFilterParams((prevValues) => ({ ...prevValues, tags: chosen }))
+  }, [setFilterParams, chosen])
 
   const handleChange = (event) => {
     const { value, checked } = event.target

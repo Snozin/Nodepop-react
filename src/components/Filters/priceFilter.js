@@ -2,19 +2,19 @@ import { useEffect, useState } from "react"
 import { useFilterContext } from "./filterContext"
 
 const PriceFilter = () => {
-  const { filterQuery, setFilterQuery } = useFilterContext()
-  const [values, setValues] = useState(filterQuery.range)
+  const { filterParams, setFilterParams } = useFilterContext()
+  const [values, setValues] = useState(filterParams.range)
 
   const handleChange = (event) => {
     const { value, name } = event.target
     setValues((prev) => ({ ...prev, [name]: value }))
   }
   useEffect(() => {
-    setFilterQuery((prev) => ({
+    setFilterParams((prev) => ({
       ...prev,
       range: values,
     }))
-  }, [values, setFilterQuery])
+  }, [values, setFilterParams])
   return (
     <label>
       Busca por rango:{" "}

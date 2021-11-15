@@ -2,15 +2,15 @@ import { useEffect, useState } from "react"
 import { useFilterContext } from "./filterContext"
 
 const NameFilter = () => {
-  const { filterQuery, setFilterQuery } = useFilterContext()
-  const [value, setValue] = useState(filterQuery.name)
+  const { filterParams, setFilterParams } = useFilterContext()
+  const [value, setValue] = useState(filterParams.name)
 
   const handleChange = (event) => {
     setValue(event.target.value)
   }
   useEffect(() => {
-    setFilterQuery((prev) => ({ ...prev, name: value }))
-  }, [value, setFilterQuery])
+    setFilterParams((prev) => ({ ...prev, name: value }))
+  }, [value, setFilterParams])
   return (
     <label>
       Busca por nombre:

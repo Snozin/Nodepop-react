@@ -13,19 +13,19 @@ const Filter = () => {
     tags: { lifestyle: false, mobile: false, motor: false, work: false },
     type: "All",
   }
-  const [filterQuery, setFilterQuery] = useState(INITIAL_STATE)
+  const [filterParams, setFilterParams] = useState(INITIAL_STATE)
 
   const handleSubmit = (event) => {
     event.preventDeffault()
   }
 
   useEffect(() => {
-    console.log("filtrare: ", filterQuery)
+    console.log("filtrare: ", filterParams)
 
     return () => {
       // Función de retorno para cancelar actualización de estado
     }
-  }, [filterQuery])
+  }, [filterParams])
 
   const handleChange = () => {
     // console.log('cambio')
@@ -36,7 +36,7 @@ const Filter = () => {
      * El filtro contendrá los parámetros para filtrar. Realizar el filtrado
     en el front con los datos ya existentes para evitar peticiones al back.
      */
-    <FilterContextProvider value={{ filterQuery, setFilterQuery }}>
+    <FilterContextProvider value={{ filterParams, setFilterParams }}>
       <div>
         <form onSubmit={handleSubmit} onChange={handleChange}>
           <NameFilter />
