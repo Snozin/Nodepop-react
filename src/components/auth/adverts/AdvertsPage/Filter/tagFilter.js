@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import { getTags } from "../../../dataService"
-import FilterContext from "./filterContext"
+import { useFilterContext } from "./filterContext"
 
 const TagFilter = () => {
   const [tags, setTags] = useState([])
-  const [chosen, setChosen] = useState({})
-  const { setFilterQuery } = useContext(FilterContext)
+  const { filterQuery, setFilterQuery } = useFilterContext()
+  const [chosen, setChosen] = useState(filterQuery.tags)
 
   useEffect(() => {
     getTags()
@@ -20,25 +20,22 @@ const TagFilter = () => {
   }, [setFilterQuery, chosen])
 
   const handleChange = (event) => {
-    const name = event.target.name
-    const value = event.target.checked
-    setChosen((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }))
+    const { value, checked } = event.target
+    setChosen((prev) => ({ ...prev, [value]: checked }))
   }
-  // TODO:
-  /**
-   * Recibir las props del estado inicial de lo checkboxes y
-   * usar el checked para controlar el valor.
-   */
+
   return (
     <div>
       Busca por tags:{" "}
       {tags.map((tag, index) => (
         <label key={index}>
           {tag}
-          <input type="checkbox" value={tag} onChange={handleChange} />
+          <input
+            type="checkbox"
+            value={tag}
+            onChange={handleChange}
+            checked={chosen[tag]}
+          />
         </label>
       ))}
     </div>

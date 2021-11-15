@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react"
-import FilterContext from "./filterContext"
+import { useEffect, useState } from "react"
+import { useFilterContext } from "./filterContext"
 
 const TypeFilter = () => {
-  const { filterQuery, setFilterQuery } = useContext(FilterContext)
+  const { filterQuery, setFilterQuery } = useFilterContext()
   const [radioValue, setRadioValue] = useState(filterQuery.type)
 
   useEffect(() => {

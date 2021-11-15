@@ -7,7 +7,12 @@ import { FilterContextProvider } from "./filterContext"
 import { useEffect, useState } from "react"
 
 const Filter = () => {
-  const INITIAL_STATE = {type:'All'}
+  const INITIAL_STATE = {
+    name: "",
+    range: { minVal: 0, maxVal: 3000 },
+    tags: { lifestyle: false, mobile: false, motor: false, work: false },
+    type: "All",
+  }
   const [filterQuery, setFilterQuery] = useState(INITIAL_STATE)
 
   const handleSubmit = (event) => {
