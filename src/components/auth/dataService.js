@@ -29,9 +29,7 @@ export const getAdvert = async (id) => {
   return await client.get(`/api/v1/adverts/${id}`)
 }
 
-export const getAdverts = async (config) => {
-  // { name, sale, price, tags }
-  console.log(config)
+export const getAdverts = async () => {
   const url = `/api/v1/adverts`
   return await client.get(url)
 }

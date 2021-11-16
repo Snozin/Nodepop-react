@@ -3,47 +3,33 @@ import { Link } from "react-router-dom"
 import { getAdverts } from "../../dataService"
 
 import "./AdvertsPage.css"
-import Filter from "../../../Filters/Filter"
+import FilterForm from "../../../Filters/FilterForm"
+import AdvertList from "./AdvertLsit"
 
 const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([])
+  const [filterAds, setFilterAds] = useState([])
 
   useEffect(() => {
     getAdverts()
       .then(setAdverts)
-      // .then(() => {
-      //   setAdverts([])
-      // })
       .catch((error) => {
         console.log(error)
       })
   }, [])
+
+  const onFilter = (ads) => {
+    console.log("toy filtrando", ads)
+    setFilterAds(ads)
+  }
+
   return (
     <main>
       <h2>Listado de anuncios</h2>
       {adverts.length > 0 ? (
         <>
-          <Filter adverts={adverts}/>
-          <ul>
-            {adverts.map((advert) => {
-              return (
-                <Link key={advert.id} to={`/adverts/${advert.id}`}>
-                  <li  className="advert-list">
-                    <h3>{advert.name}</h3>
-                    <small>{advert.sale ? "Venta" : "Compra"}</small>
-                    <p>Precio: {advert.price}</p>
-                    <div>
-                      {advert.tags?.map((tag, index) => (
-                        <span key={index}>
-                          <small>{tag}</small>{" "}
-                        </span>
-                      ))}
-                    </div>
-                  </li>
-                </Link>
-              )
-            })}
-          </ul>
+          <FilterForm adverts={adverts} onFilter={onFilter} />
+          <AdvertList adverts={filterAds} />
         </>
       ) : (
         <div>
