@@ -31,11 +31,6 @@ const FilterForm = ({ adverts, onFilter }) => {
   }
 
   return (
-    // TODO:
-    /* 
-     * El filtro contendrá los parámetros para filtrar. Realizar el filtrado
-    en el front con los datos ya existentes para evitar peticiones al back.
-     */
     <FilterContextProvider value={{ filterParams, setFilterParams }}>
       <div>
         <form onSubmit={handleSubmit}>
