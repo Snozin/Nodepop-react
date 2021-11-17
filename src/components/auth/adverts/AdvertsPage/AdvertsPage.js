@@ -19,7 +19,6 @@ const AdvertsPage = () => {
   }, [])
 
   const onFilter = (ads) => {
-    console.log("toy filtrando", ads)
     setFilterAds(ads)
   }
 
