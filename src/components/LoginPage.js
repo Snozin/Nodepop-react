@@ -32,13 +32,14 @@ const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      await login(inputValues)
+      const accessToken = await login(inputValues)
       handleLoginState(true)
       if (checked) {
-        storage.set("credentials", {
-          email: inputValues.email,
-          password: inputValues.password,
-        })
+        storage.set("auth_token", accessToken)
+        // storage.set("credentials", {
+        //   email: inputValues.email,
+        //   password: inputValues.password,
+        // })
       }
       navigate(from, { replace: true })
     } catch (error) {
@@ -67,7 +68,7 @@ const LoginPage = () => {
           onChange={handleInputChange}
         />
         <br />
-        <small>¿Guardar contraseña?</small>
+        <small>¿Mantener la sesión abierta?</small>
         <input
           type="checkbox"
           name="saveCredentials"
@@ -75,8 +76,6 @@ const LoginPage = () => {
           onChange={handleCheckboxChange}
         />
         <br />
-        {/* TODO Implementar boton de borrar formulario */}
-        {/* <button type="reset">Borrar</button> */}
         <button type="submit">Enviar</button>
       </form>
     </>

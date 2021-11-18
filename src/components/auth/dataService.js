@@ -14,7 +14,7 @@ import storage from "../../utils/storage"
 export const login = async (credentials) => {
   const { accessToken } = await client.post("/api/auth/login", credentials)
   setAuthorizationHeader(accessToken)
-  storage.set("auth_token", accessToken)
+  // storage.set("auth_token", accessToken)
   return accessToken
 }
 
