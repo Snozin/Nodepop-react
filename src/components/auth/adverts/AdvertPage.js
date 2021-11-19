@@ -11,8 +11,6 @@ const AdvertPage = () => {
   const [advert, setAdvert] = useState([])
   const [canBeDeleted, setCanBeDeleted] = useState(false)
   const navigate = useNavigate()
-  // Id prueba:
-  // 5c59c9be-edac-4ab9-8471-9b50f1903c07
 
   useEffect(() => {
     getAdvert(id)

@@ -15,15 +15,19 @@ const SelectGroup = ({ setState }) => {
     const filteredTags = tags
       .filter((option) => option.selected)
       .map((option) => option.value)
-    console.log("cambio: ", filteredTags)
-
     setValue(filteredTags)
   }
 
   return (
     <label>
       Tags{" "}
-      <select name='tags' value={value} multiple={true} onChange={handleChange} required>
+      <select
+        name="tags"
+        value={value}
+        multiple={true}
+        onChange={handleChange}
+        required
+      >
         <option value="Lifestyle">Lifestyle</option>
         <option value="Mobile">Mobile</option>
         <option value="Motor">Motor</option>

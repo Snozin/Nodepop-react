@@ -36,10 +36,6 @@ const LoginPage = () => {
       handleLoginState(true)
       if (checked) {
         storage.set("auth_token", accessToken)
-        // storage.set("credentials", {
-        //   email: inputValues.email,
-        //   password: inputValues.password,
-        // })
       }
       navigate(from, { replace: true })
     } catch (error) {

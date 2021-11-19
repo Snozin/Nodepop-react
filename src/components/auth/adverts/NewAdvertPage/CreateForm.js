@@ -6,7 +6,8 @@ import InputFile from "./InputFile"
 import SelectGroup from "./SelectTags"
 import { createAdvert } from "../../dataService"
 
-const CreateForm = () => {
+const CreateForm = ({setNewId}) => {
+  // TODO : Cambiar el uso de formData por uso del estado
   const [globalState, setGlobalState] = useState({
     name: "",
     sale: true,
@@ -14,24 +15,21 @@ const CreateForm = () => {
     photo: null
   })
 
-  console.log(globalState)
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-
     const data = new FormData(event.target)
-    // console.log(data.get('name'))
-
-    createAdvert(data)
-  }
-
-  const handleChange = () => {
-    // console.log('Toy cambiando locamente')
+    try {
+      const {id} = await createAdvert(data)
+      
+      setNewId(id)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit} onChange={handleChange}>
+      <form onSubmit={handleSubmit} >
         <InputTitle name="name" setState={setGlobalState} />
         <br />
         <InputType setState={setGlobalState} />

@@ -44,6 +44,6 @@ export const getTags = async () => {
   return await client.get("/api/v1/adverts/tags")
 }
 
-export const deleteAdverts = (id) => {
-  return client.delete(`/api/v1/adverts/${id}`)
+export const deleteAdverts = async (id) => {
+  return await client.delete(`/api/v1/adverts/${id}`)
 }

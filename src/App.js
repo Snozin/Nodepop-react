@@ -52,7 +52,6 @@ const App = ({ isPrevLogged }) => {
           <Route
             path="*"
             element={
-              // TODO Redirigir al elemento 404. Crearlo
               <main>
                 <h2>Oops!</h2>
                 <p>No hay nada por aquí!!</p>
