@@ -1,0 +1,13 @@
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+nav ul li {
+  padding: 5px;
+}
+
+nav ul li a {
+  color: green;
+}

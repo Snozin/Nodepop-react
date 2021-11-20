@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
-import { Navigate, useNavigate, useParams } from "react-router"
+import { useNavigate, useParams } from "react-router-dom"
 import { getAdvert, deleteAdverts } from "../dataService"
 
 import "./AdvertPage.css"
 import placeholder from "../../../assets/placeholder.png"
 import DeleteAdButton from "./DeleteAdButton"
+import Layout from "../layout/Layout"
 
 const AdvertPage = () => {
   const { id } = useParams()
   const [advert, setAdvert] = useState([])
-  const [canBeDeleted, setCanBeDeleted] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -22,38 +22,34 @@ const AdvertPage = () => {
   }, [id, navigate])
 
   const onDelete = () => {
-    setCanBeDeleted(true)
-  }
-
-  if (canBeDeleted) {
     deleteAdverts(id)
-    return <Navigate to="/" />
+    navigate("/adverts", { replace: true })
   }
-  return (
-      <main>
-        <h2>{advert.name}</h2>
-        {advert.photo ? (
-          <img
-            src={`${process.env.REACT_APP_API_BASE_URL}${advert.photo}`}
-            alt={`Imagen de ${advert.name}`}
-          />
-        ) : (
-          <img src={placeholder} alt="Anuncio sin foto" />
-        )}
 
-        <br />
-        <small>{advert.sale ? "Venta" : "Compra"}</small>
-        <p>Precio: {advert.price}</p>
-        <div>
-          {advert.tags?.map((tag, index) => (
-            <span key={index}>
-              <small>{tag}</small>
-              <br />
-            </span>
-          ))}
-        </div>
-        <DeleteAdButton onDelete={onDelete} />
-      </main>
+  return (
+    <Layout title={advert.name}>
+      {advert.photo ? (
+        <img
+          src={`${process.env.REACT_APP_API_BASE_URL}${advert.photo}`}
+          alt={`Imagen de ${advert.name}`}
+        />
+      ) : (
+        <img src={placeholder} alt="Anuncio sin foto" />
+      )}
+
+      <br />
+      <small>{advert.sale ? "Venta" : "Compra"}</small>
+      <p>Precio: {advert.price}</p>
+      <div>
+        {advert.tags?.map((tag, index) => (
+          <span key={index}>
+            <small>{tag}</small>
+            <br />
+          </span>
+        ))}
+      </div>
+      <DeleteAdButton onDelete={onDelete} />
+    </Layout>
   )
 }
 

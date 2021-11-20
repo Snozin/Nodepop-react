@@ -6,22 +6,21 @@ import InputFile from "./InputFile"
 import SelectGroup from "./SelectTags"
 import { createAdvert } from "../../dataService"
 
-const CreateForm = ({setNewId}) => {
+const CreateForm = ({ onSubmit }) => {
   // TODO : Cambiar el uso de formData por uso del estado
   const [globalState, setGlobalState] = useState({
     name: "",
     sale: true,
     price: 0,
-    photo: null
+    photo: null,
   })
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
     try {
-      const {id} = await createAdvert(data)
-      
-      setNewId(id)
+      const { id } = await createAdvert(data)
+      onSubmit(id)
     } catch (error) {
       console.error(error)
     }
@@ -29,7 +28,7 @@ const CreateForm = ({setNewId}) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <InputTitle name="name" setState={setGlobalState} />
         <br />
         <InputType setState={setGlobalState} />

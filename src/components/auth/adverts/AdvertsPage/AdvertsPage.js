@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { getAdverts } from "../../dataService"
 
 import "./AdvertsPage.css"
 import FilterForm from "../../../Filters/FilterForm"
 import AdvertList from "./AdvertLsit"
 
+import Layout from "../../layout/Layout"
+
 const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([])
   const [filterAds, setFilterAds] = useState([])
 
+  // TODO Actualizar estado tras borrar para refrescar la lista
   useEffect(() => {
+    console.log("efecto")
     getAdverts()
       .then(setAdverts)
       .catch((error) => {
@@ -23,8 +27,7 @@ const AdvertsPage = () => {
   }
 
   return (
-    <main>
-      <h2>Listado de anuncios</h2>
+    <Layout link={'new'} title={'Listado de Anuncios'}>
       {adverts.length > 0 ? (
         <>
           <FilterForm adverts={adverts} onFilter={onFilter} />
@@ -38,7 +41,7 @@ const AdvertsPage = () => {
           </Link>
         </div>
       )}
-    </main>
+    </Layout>
   )
 }
 

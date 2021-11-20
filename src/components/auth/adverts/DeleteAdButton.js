@@ -1,7 +1,9 @@
 import classNames from "classnames"
 import { useState } from "react"
 
-const DeleteAdButton = ({onDelete}) => {
+const DeleteAdButton = ({ onDelete }) => {
+  const [showConfirm, setShowConfirm] = useState(false)
+
   const handleClick = () => {
     setShowConfirm(true)
   }
@@ -12,8 +14,6 @@ const DeleteAdButton = ({onDelete}) => {
     }
     setShowConfirm(false)
   }
-
-  const [showConfirm, setShowConfirm] = useState(false)
 
   return (
     <>
