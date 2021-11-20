@@ -1,18 +1,20 @@
-// import { useState } from "react/cjs/react.development"
+// import { useState } from "react"
 import Button from "./Button"
 
-const Confirmation = ({className, msg, btnClick }) => {
-  // const [btnState, setBtnState] = useState(false)
-  // const handleBtnClick = ({ target }) => {
-  //   // target.name === 'confirm.yes'
-  // }
+const Confirmation = ({className, msg, onConfirm, showConfirm }) => {
+  const handleBtnClick = ({ target }) => {
+    if (target.name === 'confirm-yes') {
+      onConfirm()
+    }
+    showConfirm(false)
+  }
   return (
     <div className={className}>
       <p>{msg}</p>
-      <Button name="confirm-yes" onClick={btnClick}>
+      <Button name="confirm-yes" onClick={handleBtnClick}>
         Si
       </Button>
-      <Button name="confirm-no" onClick={btnClick}>
+      <Button name="confirm-no" onClick={handleBtnClick}>
         No
       </Button>
     </div>

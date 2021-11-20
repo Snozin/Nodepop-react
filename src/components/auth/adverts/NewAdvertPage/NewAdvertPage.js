@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router"
+import Layout from "../../layout/Layout"
 import CreateForm from "./CreateForm"
 
 const NewAdvertPage = () => {
@@ -8,10 +9,9 @@ const NewAdvertPage = () => {
   }
 
   return (
-    <main>
-      <h2>Crear nuevo Anuncio</h2>
+    <Layout title={'Crear Nuevo Anuncio'}>
       <CreateForm onSubmit={onSubmit} />
-    </main>
+    </Layout>
   )
 }
 

@@ -17,7 +17,7 @@ import { useState } from "react"
 
 const App = ({ isPrevLogged }) => {
   const [isLogged, setIsLogged] = useState(isPrevLogged)
-  console.log("ta loguiado?: ", isLogged)
+  // console.log("ta loguiado?: ", isLogged)
   const handleLoginState = (value) => setIsLogged(value)
   return (
     <AuthContext value={{ isLogged, handleLoginState }}>

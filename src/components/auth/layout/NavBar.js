@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import Logout from "./Logout"
+// import { Button } from "../../commons"
 
 import "./NavBar.css"
 
@@ -13,7 +15,9 @@ const NavBar = ({ link }) => {
             <Link to="/adverts/">Lista Anuncios</Link>
           )}
         </li>
-        <li>Logout</li>
+        <li>
+          <Logout />
+        </li>
       </ul>
     </nav>
   )

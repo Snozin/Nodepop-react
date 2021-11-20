@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { getAdvert, deleteAdverts } from "../dataService"
+import { getAdvert, deleteAdverts } from "../../dataService"
 
 import "./AdvertPage.css"
-import placeholder from "../../../assets/placeholder.png"
+import placeholder from "../../../../assets/placeholder.png"
 import DeleteAdButton from "./DeleteAdButton"
-import Layout from "../layout/Layout"
+import Layout from "../../layout/Layout"
 
 const AdvertPage = () => {
   const { id } = useParams()
@@ -16,7 +16,7 @@ const AdvertPage = () => {
     getAdvert(id)
       .then(setAdvert)
       .catch((error) => {
-        // console.log(error.status)
+        console.log(error.status)
         navigate("/notFound", { replace: true })
       })
   }, [id, navigate])

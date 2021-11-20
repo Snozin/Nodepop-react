@@ -2,14 +2,13 @@ import NavBar from "./NavBar"
 
 const Layout = ({ children, title, ...props }) => {
   return (
-    <div>
+    <>
       <NavBar {...props}></NavBar>
-      <h2>{title}</h2>
-      <main>{children}</main>
-
-      <p>Cosas</p>
-    </div>
+      <main>
+        <h2>{title}</h2>
+        {children}
+      </main>
+    </>
   )
 }
-// TODO Implementar el menú superior
 export default Layout

@@ -11,3 +11,16 @@ nav ul li {
 nav ul li a {
   color: green;
 }
+
+.logout-confirm {
+  position: absolute;
+  border: 1px solid blue;
+  padding: 5px;
+  right: 50px;
+  background-color: white;
+  z-index: 10;
+}
+
+.logout-confirm button {
+  cursor: pointer;
+}
