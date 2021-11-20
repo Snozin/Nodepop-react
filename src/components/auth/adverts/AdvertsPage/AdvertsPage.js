@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useSearchParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { getAdverts } from "../../dataService"
 
 import "./AdvertsPage.css"
@@ -14,7 +14,6 @@ const AdvertsPage = () => {
 
   // TODO Actualizar estado tras borrar para refrescar la lista
   useEffect(() => {
-    console.log("efecto")
     getAdverts()
       .then(setAdverts)
       .catch((error) => {

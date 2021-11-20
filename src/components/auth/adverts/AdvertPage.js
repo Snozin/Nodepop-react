@@ -16,7 +16,7 @@ const AdvertPage = () => {
     getAdvert(id)
       .then(setAdvert)
       .catch((error) => {
-        console.log(error.status)
+        // console.log(error.status)
         navigate("/notFound", { replace: true })
       })
   }, [id, navigate])
